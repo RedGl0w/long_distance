@@ -1,4 +1,4 @@
-#N canvas 2 108 1916 970 12;
+#N canvas 2 90 1916 963 12;
 #N canvas 2 108 1916 945 metro 0;
 #X obj 458 131 r tempo;
 #X obj 402 241 metro;
@@ -38,7 +38,6 @@
 #X obj 320 156 pipe 5;
 #X obj 382 166 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
 #000000 #000000;
-#X obj 593 253 print;
 #X obj 600 183 int;
 #X obj 381 188 s listBar;
 #X connect 0 0 2 1;
@@ -62,7 +61,7 @@
 #X connect 11 0 12 0;
 #X connect 11 0 7 0;
 #X connect 11 0 27 0;
-#X connect 13 0 34 0;
+#X connect 13 0 33 0;
 #X connect 14 0 1 0;
 #X connect 14 0 23 0;
 #X connect 17 0 5 2;
@@ -75,42 +74,39 @@
 #X connect 26 0 29 0;
 #X connect 29 0 30 0;
 #X connect 31 0 14 0;
-#X connect 32 0 35 0;
-#X connect 34 0 33 0;
-#X connect 34 0 7 0;
-#X connect 34 0 25 0;
-#X restore 504 344 pd metro;
-#X floatatom 64 89 11 0 0 1 Tempo setTempo tempo, f 11;
-#X obj 3 408 bng 113 250 50 0 empty vMetro1 empty 17 7 0 10 #fcfcfc
+#X connect 32 0 34 0;
+#X connect 33 0 7 0;
+#X connect 33 0 25 0;
+#X restore 502 245 pd metro;
+#X floatatom 4 6 28 0 0 1 Tempo setTempo tempo, f 28;
+#X obj 1 308 bng 113 250 50 0 None vMetro1 empty 17 7 0 10 #fcfcfc
 #ff0000 #000000;
-#N canvas 2 108 1916 945 utilities 1;
+#N canvas 2 90 1916 963 utilities 0;
 #X msg 46 151 \; pd dsp 1;
 #X obj 52 41 loadbang;
 #X obj 155 163 s setTempo;
 #X msg 155 134 92;
 #X msg 445 108 names monroe;
 #X obj 441 162 s mvmtList;
-#X obj 694 112 key;
-#X obj 682 162 sel 32;
-#X obj 675 276 s changeMetro;
-#X obj 667 235 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#X obj 582 119 pipe 2;
+#X obj 583 147 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
 #000000 #000000;
 #X connect 1 0 0 0;
 #X connect 1 0 3 0;
 #X connect 1 0 4 0;
+#X connect 1 0 6 0;
 #X connect 3 0 2 0;
 #X connect 4 0 5 0;
 #X connect 6 0 7 0;
-#X connect 7 0 9 0;
-#X connect 9 0 8 0;
-#X restore 504 304 pd utilities;
-#X obj 306 205 tgl 100 0 metro changeMetro Play\ mouvement -15 -15
+#X connect 7 0 5 0;
+#X restore 502 205 pd utilities;
+#X obj 204 154 tgl 100 0 metro changeMetro Play\ mouvement -15 -15
 0 20 #fcfcfc #000000 #000000 0 1;
-#X obj 116 408 bng 113 250 50 0 empty vMetro2 empty 17 7 0 10 #fcfcfc
+#X obj 114 308 bng 113 250 50 0 None vMetro2 empty 17 7 0 10 #fcfcfc
 #000000 #000000;
-#X obj 230 408 bng 113 250 50 0 empty vMetro3 empty 17 7 0 10 #fcfcfc
+#X obj 228 308 bng 113 250 50 0 None vMetro3 empty 17 7 0 10 #fcfcfc
 #000000 #000000;
-#X obj 343 408 bng 113 250 50 0 empty vMetro4 empty 17 7 0 10 #fcfcfc
+#X obj 341 308 bng 113 250 50 0 None vMetro4 empty 17 7 0 10 #fcfcfc
 #000000 #000000;
 #N canvas 2 90 1916 988 visualMetro 0;
 #X obj 243 151 r stateOfMetro;
@@ -124,7 +120,7 @@
 #X connect 1 1 3 0;
 #X connect 1 2 4 0;
 #X connect 1 3 5 0;
-#X restore 504 364 pd visualMetro;
+#X restore 502 265 pd visualMetro;
 #N canvas 2 90 1916 963 audioMetro 0;
 #X obj 153 60 r stateOfMetro;
 #X obj 153 93 sel 0;
@@ -157,19 +153,31 @@
 #X connect 11 0 7 1;
 #X connect 12 0 9 0;
 #X connect 13 0 11 0;
-#X restore 504 385 pd audioMetro;
-#X dropdown 63 151 6 1 0 1 mvmt mvmtList mvmt, f 6;
-#N canvas 2 90 1916 963 audioOutput 0;
-#X obj 144 61 r~ mixerClick;
-#X obj 170 298 dac~ 1 2;
-#X obj 143 176 *~ 1;
-#X obj 332 63 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 #fcfcfc
-#000000 #000000 7000 1;
-#X connect 0 0 2 0;
-#X connect 2 0 1 0;
+#X restore 502 285 pd audioMetro;
+#X dropdown 4 26 26 1 0 1 mouvement mvmtList mvmt, f 26;
+#N canvas 2 108 1916 970 audioOutput 0;
+#X obj 105 105 vsl 199 194 0 1 0 0 mixerClickVolume mixerClickVolumeSet
+empty 0 -9 0 10 #fcfcfc #000000 #000000 8200 1;
+#N canvas 2 126 1916 927 Click 0;
+#X obj 388 115 r~ mixerClick;
+#X obj 387 230 *~ 1;
+#X obj 397 138 r mixerClickVolume;
+#X obj 381 267 s~ mixerClickMixed;
+#X obj 686 125 loadbang;
+#X msg 687 145 1, f 5;
+#X obj 686 165 s mixerClickVolumeSet;
+#X connect 0 0 1 0;
+#X connect 1 0 3 0;
 #X connect 2 0 1 1;
-#X connect 3 0 2 1;
-#X restore 504 26 pd audioOutput;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X restore 168 66 pd Click;
+#X obj 104 334 r~ mixerClickMixed, f 28;
+#X obj 105 484 dac~ 1 2 3 4, f 57;
+#X text 179 311 Click;
+#X connect 2 0 3 0;
+#X connect 2 0 3 1;
+#X restore 503 5 pd audioOutput;
 #N canvas 2 108 1916 945 referenceBar 0;
 #X obj 259 282 textfile;
 #X obj 314 27 r mvmt;
@@ -204,6 +212,42 @@
 #X connect 10 0 11 0;
 #X connect 11 0 8 0;
 #X connect 12 0 13 0;
-#X restore 504 324 pd referenceBar;
-#X dropdown 63 185 6 1 0 0 begin listBar setBar, f 6;
-#X floatatom 53 279 5 0 0 1 Bar bar -, f 5;
+#X restore 502 225 pd referenceBar;
+#X dropdown 4 45 26 1 0 1 - listBar setBar, f 26;
+#X floatatom 4 65 28 0 0 1 - bar None, f 28;
+#N canvas 2 126 1916 952 control 0;
+#X obj 290 322 s changeMetro;
+#N canvas 2 144 1916 934 keyboard 0;
+#X obj 219 105 inlet;
+#X obj 258 105 inlet;
+#X obj 228 173 key;
+#X obj 216 223 sel 32;
+#X obj 213 244 bng 25 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 215 291 gate;
+#X obj 195 356 outlet;
+#X connect 0 0 5 0;
+#X connect 1 0 3 1;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 1;
+#X connect 5 0 6 0;
+#X restore 256 159 pd keyboard;
+#X obj 256 112 tgl 47 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 1 1;
+#X msg 242 68 1;
+#X obj 242 47 loadbang;
+#X floatatom 305 137 5 0 0 0 - - -, f 5;
+#X msg 273 68 32;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X connect 3 0 2 0;
+#X connect 4 0 3 0;
+#X connect 4 0 6 0;
+#X connect 5 0 1 1;
+#X connect 6 0 5 0;
+#X restore 503 25 pd control;
+#N canvas 2 144 1916 909 config 0;
+#X restore 503 310 pd config;
+#X text 205 45 Begin at;
+#X text 205 66 current bar;
